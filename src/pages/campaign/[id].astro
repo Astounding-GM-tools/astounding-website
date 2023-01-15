@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const { id } = Astro.params;
+const query = `https://rtagji7x.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%3D%3D%22campaign%22%26%26_id%3D%3D%22${id}%22%5D%5B0%5D%7Btitle%2Cdescription%2C'imageSrc'%3A%20image.asset-%3Eurl%2C'acts'%3A%20acts%5B%5D-%3E%7Btitle%2C%20description%2C%20'imageSrc'%3A%20image.asset-%3Eurl%2C%20'scenes'%3A%20scenes%5B%5D-%3E%7Btitle%2C%20description%2C%20'imageSrc'%3A%20image.asset-%3Eurl%7D%7D%2C%7D&%24id=%22a5563e88-9893-4b7c-8bc3-a783b72bcf63%22`;
+const campaign = await fetch(query).then((res) => res.json()).then((data) => data.result);
+
+---
+
+<Layout title="Astounding Campaign!">
+	<main>
+
+        <h1>{campaign.title}</h1>
+        <img src={campaign.imageSrc} alt={campaign.title}/>
+        <p>{campaign.description}</p>
+        <ul>
+            {campaign.acts.map((act:any, i: number) => (
+                <li>
+                    <h2>{`Act ${i + 1}: ${act.title}`}</h2>
+                    <img src={act.imageSrc} alt={act.title}/>
+                    <p>{act.description}</p>
+                    <ul>
+                        {act.scenes.map((scene:any) => (
+                            <li>
+                                <h3>{scene.title}</h3>
+                                <img src={scene.imageSrc} alt={scene.title}/>
+                                <p>{scene.description}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
+            ))}
+        </ul>
+
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+</style>

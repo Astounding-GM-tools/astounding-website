@@ -1,36 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const query = "https://rtagji7x.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22campaign%22%5D%7B%0A%20%20title%2C%20%0A%20%20_id%2C%20%0A%20%20description%2C%0A%20%20'imageSrc'%3A%20image.asset-%3Eurl%0A%7D";
+const campaigns = await fetch(query).then((res) => res.json()).then((res) => res.result);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Astounding homepage">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		<h1>Welcome to your <br><span class="text-gradient">Astounding GM Tools</span>!</h1>
+		<h3>
+			To get started, select a campaign:
+		</h3>
 		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
+            {campaigns.map((campaign:any) =>
+                <Card
+                    href={`/campaign/${campaign._id}`}
+                    title={campaign.title}
+                    body={campaign.description}
+                    imageSrc={campaign.imageSrc}
+                />
+            )}
 		</ul>
         <h2>Astounding features:</h2>
         <ul role="list" class="link-card-grid">
