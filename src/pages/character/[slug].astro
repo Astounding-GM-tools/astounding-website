@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Character from "../../components/Character.svelte"
 
-const {slug} = Astro.params;
+const { slug } = Astro.params;
 
 if (!slug) {
     throw new Error('No character slug provided');
@@ -10,11 +10,7 @@ if (!slug) {
 ---
 <Layout title="Astrounding Character!">
     <main>
-        <h2>Character details screen</h2>
-        <h3>GM View</h3>
-        <h4>{slug}</h4>
-
-        <Character {slug} />
-
+        <h3>(GM View)</h3>
+        <Character client:only="svelte" {slug} />
     </main>
 </Layout>
