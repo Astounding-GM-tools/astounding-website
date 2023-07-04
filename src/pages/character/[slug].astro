@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const {slug} = Astro.params;
+
+if (!slug) {
+    throw new Error('No character slug provided');
+}
+---
+<Layout title="Astrounding Character!">
+    <main>
+        <h2>Character details screen</h2>
+        <h3>GM View</h3>
+        <h4>{slug}</h4>
+    </main>
+</Layout>

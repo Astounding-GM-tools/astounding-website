@@ -1,0 +1,25 @@
+---
+import imageUrlBuilder from '@sanity/image-url';
+import { sanityClient } from '../lib/util/sanityClientPublic';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+
+// TODO: MOVE TO UTILS:
+
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source: SanityAsset) {
+  return builder.image(source)
+}
+const {characters} = Astro.props;
+console.log(characters);
+---
+{characters?.length && <h4>Characters</h4>}
+<h4>Characters</h4>
+{characters?.map((character:any) => (
+    <div>
+        <a href={`/character/${character.slug}`}>
+            <h4>{character.name}</h4>
+        </a>
+        <p>{character.occupation}</p>
+        <img src={urlFor(character.portrait).height(200).width(200).url()} alt={`Image of ${character.name}, ${character.occupation}`} />
+    </div>
+))}

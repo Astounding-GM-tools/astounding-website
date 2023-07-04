@@ -1,4 +1,5 @@
 ---
+import Characters from '../../components/Characters.astro';
 import Layout from '../../layouts/Layout.astro';
 import { campaignQuery } from '../../lib/groq/campaign';
 import { sanityClient } from '../../lib/util/sanityClientPublic';
@@ -11,7 +12,7 @@ if (!id) {
 
 const campaign = await sanityClient.fetch(campaignQuery(id));
 
-console.log("", campaign.acts[0].scenes[1]);
+
 ---
 
 <Layout title="Astounding Campaign!">
@@ -36,15 +37,7 @@ console.log("", campaign.acts[0].scenes[1]);
                                     <img src={scene.imageSrc} alt={scene.title}/>
                                 )}
                                 <p>{scene.description}</p>
-                                {scene.characters && (
-                                    <h4>Characters</h4>
-                                )}
-                                {scene.characters?.map((character:any) => (
-                                    <div>
-                                        <h4>{character.name}</h4>
-                                        <p>{character.description}</p>
-                                    </div>
-                                ))}
+                                <Characters characters={scene.characters}/>
                             </li>
                         ))}
                     </ul>

@@ -14,7 +14,12 @@ export const campaignQuery = (id: string) => {
                 title, 
                 description,
                 'imageSrc': image.asset->url,
-                'characters': sceneCharacters[]->{...}
+                'characters': sceneCharacters[]->{
+                    name,
+                    occupation,
+                    portrait,
+                    'slug': slug.current,
+                }
             }
         }
     }`;
