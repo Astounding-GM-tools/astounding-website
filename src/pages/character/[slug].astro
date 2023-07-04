@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Character from "../../components/Character.svelte"
 
 const {slug} = Astro.params;
 
@@ -12,5 +13,8 @@ if (!slug) {
         <h2>Character details screen</h2>
         <h3>GM View</h3>
         <h4>{slug}</h4>
+
+        <Character {slug} />
+
     </main>
 </Layout>

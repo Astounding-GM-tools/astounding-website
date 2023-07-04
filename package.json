@@ -11,8 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/svelte": "^3.1.0",
     "@sanity/client": "^5.4.2",
     "@sanity/image-url": "^1.0.2",
-    "astro": "^1.9.0"
+    "astro": "^2.7.3",
+    "svelte": "^4.0.3"
   }
 }
