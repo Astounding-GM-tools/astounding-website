@@ -14,25 +14,44 @@
     <section class="portrait">
         <h3>portrait</h3>
     </section>
-    <section class="stats">
-        <dl>
-            <dt><i>⚡</i>Speed</dt>
-            <dd>42</dd>
-            
-            <dt><i>🗡️</i>Fight</dt>
-            <dd>53</dd>
-
-
-            <dt><i>🛡️</i>Tough</dt>
-            <dd>44</dd>
-
-            <dt><i>🔥</i>Will</dt>
-            <dd>81</dd>
-
-            <dt><i>❤️</i>Health</dt>
-            <dd>18</dd>
-        </dl>
+    <section class="statblock">
+        <div class="stat">
+            <span class="icon">⚡</span>
+            <div class="block">
+                <div class="label">Speed</div>
+                <div class="value">42</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="icon">🗡️</span>
+            <div class="block">
+                <div class="label">Fight</div>
+                <div class="value">53</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="icon">🛡️</span>
+            <div class="block">
+                <div class="label">Tough</div>
+                <div class="value">44</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="icon">🔥</span>
+            <div class="block">
+                <div class="label">Will</div>
+                <div class="value">81</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="icon">❤️</span>
+            <div class="block">
+                <div class="label">Health</div>
+                <div class="value">18</div>
+            </div>
+        </div>
     </section>
+
     <section class="description">
         <h4>Description and mannerisms</h4>
                 <h5>Formidable Presence</h5>
@@ -83,25 +102,33 @@
         background-color: bisque;
         border-radius: 15px;
     }
-
-    dl {
-        height: 2.85em;
+    .statblock {
+        margin-top: 8px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-evenly;
         flex-wrap: wrap;
+        width: 100%;
+    }
+    .stat {
+        display: flex;
+        min-width: 80px;
+        margin-bottom: 8px;
     }
 
-    i {
-        padding-right: 8px;
-    }
-
-    dt, dd {
-        display:flex;
+    .stat .icon {
+        display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 1.4em;
-        margin: 0;
+        font-size: 1.6em;
     }
+
+    .stat .label,
+    .stat .value {
+        display: flex;
+        justify-content: center;
+        min-width: 60px;
+    }
+
     h5 {
         margin-bottom: 0;
     }
